@@ -13,7 +13,7 @@ async function generateInfo(recipe: string) {
             temperature: 0.2,
             n: 1,
         });
-        return response.choices[0];
+        return response.choices[0].message.content;
     } catch (error) {
         console.error(error);
         throw error;
