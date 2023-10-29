@@ -8,13 +8,18 @@ import Footer from '@/components/footer';
 import NutritionFacts from '@/components/NutritionFacts';
 
 export default function HomePage() {
+  const [recipe, setRecipe] = useState<string>()
   const [nutritionFacts, setNutritionFacts] = useState<string>()
+
+  const handleRecipeChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setRecipe(event.target.value)
+  }
 
   const handleRecipeSubmit = async () => {
     // Make API call to get nutrition facts
     const response = await fetch('/api/openai', {
       method: 'POST',
-      body: JSON.stringify({ recipe: 'your recipe here' }),
+      body: JSON.stringify({ recipe }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -37,7 +42,7 @@ export default function HomePage() {
       <div className={styles.grid}>
         <div className={styles.card}>
           <h2>Enter your recipe</h2>
-          <textarea className={styles.textarea} placeholder="Enter your recipe here"></textarea>
+          <textarea className={styles.textarea} placeholder="Enter your recipe here" onChange={handleRecipeChange}>{recipe}</textarea>
           <button className={styles.button} onClick={handleRecipeSubmit}>Submit</button>
         </div>
         <div className={styles.card}>

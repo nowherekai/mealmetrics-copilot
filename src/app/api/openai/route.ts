@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 async function generateInfo(recipe: string) {
+    console.log(`generateInfo: ${recipe}`);
     try {
         const openai = new OpenAI();
         const response = await openai.chat.completions.create({
