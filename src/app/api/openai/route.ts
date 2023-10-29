@@ -27,6 +27,6 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
         const { recipe } = await request.json();
         const response = await generateInfo(recipe);
-        return NextResponse.json({success: true, nutritionFacts: [response]});
+        return NextResponse.json({success: true, nutritionFacts: response});
 }
 
